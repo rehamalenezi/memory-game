@@ -1,0 +1,133 @@
+/*  خلفية الصفحة */
+body {
+    font-family: "Tagesschrift", system-ui;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-image: url('imges/di.jpg'); /* مسار الصورة */
+  background-size: cover; /* عشان الصورة تغطي كامل الشاشة */
+  background-position: center; /* عشان الصورة تكون في المنتصف */
+  background-attachment: fixed; /* خلي الصورة ثابتة لما يمرر المستخدم الصفحة */
+  position: relative;
+
+
+  }
+  
+body::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.3); /* طبقة رمادية شفافة */
+    z-index: -1; /* عشان تكون طبقة الخلفية تحت المحتوى */
+  }
+  body > * {
+    position: relative;
+    z-index: 1; /* عشان المحتوى يظهر فوق الخلفية */
+  }
+
+
+
+
+
+  /* 📦 توزيع العنوان + اللعبة */
+  .main-layout {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 40px;
+    gap: 50px;
+  }
+  
+  /* 🎯 العنوان على اليسار بتنسيق كرتوني */
+  .game-title {
+     font-size: 4rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #19335a,#488cff , #6A5BFF, #4675c0, #488cff ); /* التدرج اللوني */
+  -webkit-background-clip: text;
+  color: transparent;
+  text-align: center;
+  margin-top: 50px;
+  }
+  
+  /* ✨ حركة اهتزاز للعنوان */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* 🧩 لوحة اللعبة */
+  #game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 120px);
+    gap: 15px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+  
+  /* 🃏 تصميم البطاقة */
+  .card {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(145deg, #c2d3ff, #d8d8ff);
+    border-radius: 15px;
+    border: 4px solid transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.4s ease, border 0.4s ease;
+    position: relative;
+  }
+  
+  /* 🌀 تأثير التحويم */
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* 🔒 صورة البطاقة (مخفية أولاً) */
+  .card img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    display: none;
+  }
+  
+  /* 📤 إظهار الصورة عند الفتح أو التطابق */
+  .card.open img,
+  .card.matched img {
+    display: block;
+  }
+  
+  /* 💜 عند الفتح */
+  .card.open {
+    border: 4px solid #6b6bff;
+  }
+  
+  /* ✅ عند التطابق */
+  .card.matched {
+    animation: glow 1.2s infinite alternate;
+    border: 4px solid;
+  border-image: linear-gradient(90deg, #0033ff, #977dff, #ffccfe) 1;
+  border-radius: 10px;
+  }
+  
+  /* ✨ تأثير متوهج عند التطابق */
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px #0033ff;
+    }
+    to {
+      box-shadow: 0 0 15px #977dff, 0 0 25px #ffccfe;
+    }
+  
+  }
+  
